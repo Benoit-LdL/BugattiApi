@@ -7,13 +7,14 @@ namespace Bugatti
 {
     public class Creator
     {
-        public ICollection<Car> Cars { get; set; }
 
         public int Id { get; set; }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public ICollection<Car> Cars { get; set; }
 
         //public DateTime Birthday { get; set; }
 

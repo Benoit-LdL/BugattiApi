@@ -7,7 +7,6 @@ namespace Bugatti
 {
     public class Car
     {
-        public Creator Creator { get; set; }
 
         public int Id { get; set; }
 
@@ -15,7 +14,7 @@ namespace Bugatti
 
         public string Name { get; set; }
 
-
+        public Creator Creator { get; set; }
 
         //public int Pistons { get; set; }
 
