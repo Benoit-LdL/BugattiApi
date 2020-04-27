@@ -21,7 +21,7 @@ namespace Bugatti.Controllers
         [HttpGet]
         public string Test()
         {
-            return "test";
+            return "Car controller";
         }
 
         //this action is accessible via the url (route): http://localhost:44335/api/v1/cars
@@ -53,7 +53,7 @@ namespace Bugatti.Controllers
                 return NotFound();
             return Ok(car);
         }
-        //------------- Doesn't work
+
         //this action is accessible via the url (route): http://localhost:44335/api/v1/cars/delete/{id}
         [Route("delete/{id}")]
         [HttpDelete]
