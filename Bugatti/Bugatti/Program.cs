@@ -11,7 +11,7 @@ namespace Bugatti
 {
     /* TO DO LIST
     1) DONE Je bouwt een ASP Core 3.x RESTful API in combinatie met EF.core (code first) en een SQL databank over een bepaald onderwerp.
-    2) Deze API moet minstens 2 controllers bevatten met alle CRUD actions
+    2) DONE Deze API moet minstens 2 controllers bevatten met alle CRUD actions
     3) Het datamodel moet bestaan uit minstens 3 klassen, waarbij er een "1 op veel" relatie is alsook een "veel op veel" relatie (dit laatste moet je zelf verder uitzoeken waar nodig)
     4) In de "hoofd" controller moet er kunnen worden gewerkt met "paging", "sorting" en "search" op meerdere properties
     5) Voorzie minimum 5 verschillende ingebouwde validaties op de API
