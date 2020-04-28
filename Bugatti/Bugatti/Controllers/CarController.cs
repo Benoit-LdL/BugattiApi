@@ -9,42 +9,34 @@ namespace Bugatti.Controllers
     [Route("api/v1/cars")]
     public class CarController : Controller
     {
+        #region Bugatti Context
         private readonly BugattiContext context;
 
         public CarController(BugattiContext context)
         {
             this.context = context;
         }
+        #endregion
 
-        //this action is accessible via the url(route): http://localhost:44335/api/v1/cars/test
+        #region TEST [HTTPGET] (/api/v1/cars/test)
         [Route("test")]
         [HttpGet]
         public string Test()
         {
             return "Car controller";
         }
+        #endregion
 
-        //this action is accessible via the url (route): http://localhost:44335/api/v1/cars
+        #region GET ALL CARS [HTTPGET] (/api/v1/cars)
         [HttpGet]
         public List<Car> GetAllCars()
         {
             return context.Cars.ToList();
         }
+        #endregion
 
-        //------------- Doesn't work
-        [HttpPost]
-        public IActionResult CreateCar([FromBody]Car newCar)
-        {
-            //Car toevoegen in DB, Id wordt ook toegekend
-            context.Cars.Add(newCar);
-            context.SaveChanges();
-            //stuur result 201 met car als content
-            return Created("", newCar);
-        }
-        //-------------
-
-        //this action is accessible via the url (route): http://localhost:44335/api/v1/cars/get/{id}
-        [Route("get/{id}")]
+        #region GET SPECIFIC CAR [HTTPGET] (/api/v1/cars/{id})
+        [Route("{id}")]
         [HttpGet]
         public IActionResult GetCar(int id)
         {
@@ -53,8 +45,9 @@ namespace Bugatti.Controllers
                 return NotFound();
             return Ok(car);
         }
+        #endregion
 
-        //this action is accessible via the url (route): http://localhost:44335/api/v1/cars/delete/{id}
+        #region DELETE SPECIFIC CAR [HTTPDELETE] (/api/v1/cars/delete/{id})
         [Route("delete/{id}")]
         [HttpDelete]
         public IActionResult DeleteCar(int id)
@@ -68,8 +61,21 @@ namespace Bugatti.Controllers
             //default correct deletion response code 204
             return NoContent();
         }
-        //-------------
+        #endregion
 
+        //405Method Not Allowed
+        [HttpPost]
+        public IActionResult CreateCar([FromBody]Car newCar)
+        {
+            //Car toevoegen in DB, Id wordt ook toegekend
+            context.Cars.Add(newCar);
+            context.SaveChanges();
+            //stuur result 201 met car als content
+            return Created("", newCar);
+        }
+
+        //405Method Not Allowed
+        [Route("/update")]
         [HttpPut]
         public IActionResult UpdateCar([FromBody] Car updateCar)
         {
@@ -83,6 +89,8 @@ namespace Bugatti.Controllers
             context.SaveChanges();
             return Ok(orgCar);
         }
+
+        
 
 
     }
