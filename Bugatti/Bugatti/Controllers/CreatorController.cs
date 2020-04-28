@@ -55,7 +55,7 @@ namespace Bugatti.Controllers
             var creator = context.Creators.Find(id);
             if (creator == null)
                 return NotFound();
-            //delete car
+            //delete creator
             context.Creators.Remove(creator);
             context.SaveChanges();
             //default correct deletion response code 204
