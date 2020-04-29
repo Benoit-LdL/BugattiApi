@@ -36,9 +36,27 @@ namespace Bugatti
                     FirstName = "Jean",
                     LastName = "Bugatti"
                 };
+                var creator3 = new Creator()
+                {
+                    FirstName = "Jozef",
+                    LastName = "Kaban"
+                };
+                var creator4 = new Creator()
+                {
+                    FirstName = "Achim",
+                    LastName = "Anscheidt"
+                };
+                var creator5 = new Creator()
+                {
+                    FirstName = "Étienne",
+                    LastName = "Salomé"
+                };
                 //add Creators to collection of Creators
                 context.Creators.Add(creator1);
                 context.Creators.Add(creator2);
+                context.Creators.Add(creator3);
+                context.Creators.Add(creator4);
+                context.Creators.Add(creator5);
                 //save all the changes to the DB
                 //context.SaveChanges();
             }
@@ -51,27 +69,63 @@ namespace Bugatti
                 {
                     Type = "57sc",
                     Name = "Atlantic",
-                    Creator = context.Creators.Find(2)
+                    Creator = context.Creators.Find(2) //doesn't work
                 };
                 var car2 = new Car()
                 {
                     Type = "50",
                     Name = "Royale",
-                    Creator = context.Creators.Find(1)
+                    Creator = context.Creators.Find(1) //doesn't work
                 };
                 var car3 = new Car()
                 {
-                    Type = "Super Sport",
+                    Type = "grand Sport",
                     Name = "Veyron",
+                    //Creator =
+                };
+                var car4 = new Car()
+                {
+                    Type = "super Sport",
+                    Name = "Veyron",
+                    //Creator =
+                };
+                var car5 = new Car()
+                {
+                    Type = "grans Sport vitesse",
+                    Name = "Veyron",
+                    //Creator =
+                };
+                var car6 = new Car()
+                {
+                    Type = "",
+                    Name = "Chiron",
+                    //Creator =
+                };
+                var car7 = new Car()
+                {
+                    Type = "super sport",
+                    Name = "chiron",
+                    //Creator =
+                };
+                var car8 = new Car()
+                {
+                    Type = "",
+                    Name = "la voiture noire",
                     //Creator =
                 };
                 //add car to collection of cars
                 context.Cars.Add(car1);
                 context.Cars.Add(car2);
                 context.Cars.Add(car3);
+                context.Cars.Add(car4);
+                context.Cars.Add(car5);
+                context.Cars.Add(car6);
+                context.Cars.Add(car7);
+                context.Cars.Add(car8);
                 //save all the changes to the DB
                 context.SaveChanges();
             }
+        
         }
     }
 }

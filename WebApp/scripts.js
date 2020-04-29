@@ -1,17 +1,19 @@
-fetch('https://localhost:44335/api/v1/cars')
-  .mode
-  .then(response => response.json())
-  .then(data => console.log(data));
-
-
-
-
 /*
+fetch('https://localhost:44335/api/v1/cars')
+  .then((resp) => resp.json()) // Transform the data into json
+  .then(function(data) {
+    // Create and append the li's to the ul
+    console.log(data);
+    })
+*/
+
+
 var request = new XMLHttpRequest()
 request.open('GET', 'https://localhost:44335/api/v1/cars')
 request.withCredentials = true;
-request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader("Access-Control-Allow-Origin", "*");
+request.setRequestHeader("Access-Control-Allow-Methods", "*");
+request.setRequestHeader("Access-Control-Allow-Headers", "*");
 
 request.onload = function() {
   // Begin accessing JSON data here
@@ -27,4 +29,3 @@ request.onload = function() {
 }
 
 request.send({ 'request': "authentication token" })
-*/

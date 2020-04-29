@@ -46,6 +46,13 @@ namespace Bugatti
                 endpoints.MapControllers();
             });
             DBInitializer.Initialize(BContext);
+
+            //disable CORS
+
+            app.UseCors(builder =>
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader());
         }
     }
 }
