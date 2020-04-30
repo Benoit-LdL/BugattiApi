@@ -18,7 +18,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region TEST [HTTPGET] (/api/v1/cars/test)
+        #region TEST                    [HTTPGET] (/api/v1/cars/test)
         [Route("test")]
         [HttpGet]
         public string Test()
@@ -27,7 +27,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region GET ALL CARS [HTTPGET] (/api/v1/cars)
+        #region GET ALL CARS            [HTTPGET] (/api/v1/cars)
         [HttpGet]
         public List<Car> GetAllCars()
         {
@@ -35,7 +35,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region GET SPECIFIC CAR [HTTPGET] (/api/v1/cars/{id})
+        #region GET SPECIFIC CAR        [HTTPGET] (/api/v1/cars/{id})
         [Route("{id}")]
         [HttpGet]
         public IActionResult GetCar(int id)
@@ -47,7 +47,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region DELETE SPECIFIC CAR [HTTPDELETE] (/api/v1/cars/delete/{id})
+        #region DELETE SPECIFIC CAR     [HTTPDELETE] (/api/v1/cars/delete/{id})
         [Route("delete/{id}")]
         [HttpDelete]
         public IActionResult DeleteCar(int id)
@@ -63,7 +63,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        //405Method Not Allowed
+        #region CREATE NEW CAR          [HTTPPOST] (/api/v1/cars)        
         [HttpPost]
         public IActionResult CreateCar([FromBody]Car newCar)
         {
@@ -73,6 +73,7 @@ namespace Bugatti.Controllers
             //stuur result 201 met car als content
             return Created("", newCar);
         }
+        #endregion
 
         //405Method Not Allowed
         [Route("/update")]

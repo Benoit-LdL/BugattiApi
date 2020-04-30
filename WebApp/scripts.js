@@ -23,5 +23,4 @@ request.onload = function() {
     console.log('error')
   }
 }
-
-request.send({ 'request': "authentication token" })
+request.send()
