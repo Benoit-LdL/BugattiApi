@@ -69,7 +69,7 @@ namespace Bugatti
                 {
                     Type = "57sc",
                     Name = "Atlantic",
-                    Creator = context.Creators.Find(2) //doesn't work
+                    Creator = context.Creators.Find(2) //doesn't work //gwn creator van hierboven gebruiken
                 };
                 var car2 = new Car()
                 {

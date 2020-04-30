@@ -10,10 +10,6 @@ fetch('https://localhost:44335/api/v1/cars')
 
 var request = new XMLHttpRequest()
 request.open('GET', 'https://localhost:44335/api/v1/cars')
-request.withCredentials = true;
-request.setRequestHeader("Access-Control-Allow-Origin", "*");
-request.setRequestHeader("Access-Control-Allow-Methods", "*");
-request.setRequestHeader("Access-Control-Allow-Headers", "*");
 
 request.onload = function() {
   // Begin accessing JSON data here

@@ -9,6 +9,9 @@ namespace Bugatti
 {
     public class Startup
     {
+        //for CORS
+
+        //---
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -24,6 +27,17 @@ namespace Bugatti
                         Configuration.GetConnectionString("DefaultConnection")
                     )   
                 );
+
+            //for CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Policy1",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost");
+                    });
+            });
+            //---
             services.AddControllers();
         }
 
@@ -36,8 +50,22 @@ namespace Bugatti
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
+
+            //for CORS
+            app.UseCors();
+            //--
+
+
+
+            //Code PDF CORS
+
+            //app.UseCors(builder =>
+            //    builder.AllowAnyOrigin()
+            //           .AllowAnyMethod()
+            //           .AllowAnyHeader());
+
+            //-------------
 
             app.UseAuthorization();
 
@@ -47,12 +75,7 @@ namespace Bugatti
             });
             DBInitializer.Initialize(BContext);
 
-            //disable CORS
-
-            app.UseCors(builder =>
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader());
+            
         }
     }
 }
