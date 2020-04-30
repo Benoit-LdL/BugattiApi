@@ -18,7 +18,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region TEST                    [HTTPGET] (/api/v1/cars/test)
+        #region TEST                    [HTTPGET]       (/api/v1/cars/test)
         [Route("test")]
         [HttpGet]
         public string Test()
@@ -27,7 +27,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region GET ALL CARS            [HTTPGET] (/api/v1/cars)
+        #region GET ALL CARS            [HTTPGET]       (/api/v1/cars)
         [HttpGet]
         public List<Car> GetAllCars()
         {
@@ -35,7 +35,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region GET SPECIFIC CAR        [HTTPGET] (/api/v1/cars/{id})
+        #region GET SPECIFIC CAR        [HTTPGET]       (/api/v1/cars/{id})
         [Route("{id}")]
         [HttpGet]
         public IActionResult GetCar(int id)
@@ -47,7 +47,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region DELETE SPECIFIC CAR     [HTTPDELETE] (/api/v1/cars/delete/{id})
+        #region DELETE SPECIFIC CAR     [HTTPDELETE]    (/api/v1/cars/delete/{id})
         [Route("delete/{id}")]
         [HttpDelete]
         public IActionResult DeleteCar(int id)
@@ -63,7 +63,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region CREATE NEW CAR          [HTTPPOST] (/api/v1/cars)        
+        #region CREATE NEW CAR          [HTTPPOST]      (/api/v1/cars)        
         [HttpPost]
         public IActionResult CreateCar([FromBody]Car newCar)
         {
@@ -75,8 +75,25 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        //405Method Not Allowed
-        [Route("/update")]
+        #region PATCH CAR               [HTTPPATCH]     (/api/v1/cars)
+        [HttpPatch]
+        public IActionResult PatchCar([FromBody] Car updateCar)
+        {
+            var orgCar = context.Cars.Find(updateCar.Id);
+            if (orgCar == null)
+                return NotFound();
+
+            orgCar.Name = updateCar.Name;
+            //orgCar.Creator = updateCar.Creator;
+
+            context.SaveChanges();
+            return Ok(orgCar);
+        }
+        #endregion
+        
+        
+        //Not Working -> can't give creator  
+        #region UPDATE CAR               [HTTPPUT]       (/api/v1/cars)
         [HttpPut]
         public IActionResult UpdateCar([FromBody] Car updateCar)
         {
@@ -84,15 +101,12 @@ namespace Bugatti.Controllers
             if (orgCar == null)
                 return NotFound();
 
-            orgCar.Type = updateCar.Type;
             orgCar.Name = updateCar.Name;
+            orgCar.Creator = updateCar.Creator;
 
             context.SaveChanges();
             return Ok(orgCar);
         }
-
-        
-
-
+        #endregion
     }
 }

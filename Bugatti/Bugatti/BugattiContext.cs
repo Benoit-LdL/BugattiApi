@@ -12,8 +12,16 @@ namespace Bugatti
         {
         
         }
-    public DbSet<Creator> Creators { get; set; }
+        public DbSet<Creator> Creators { get; set; }
 
-    public DbSet<Car> Cars { get; set; }
+        public DbSet<Car> Cars { get; set; }
+
+        public DbSet<Country> Countries { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Car_Country_JoinTable>()
+                .HasKey(lrtt => new { lrtt.CarId, lrtt.CountryId });
+        }
     }
 }
