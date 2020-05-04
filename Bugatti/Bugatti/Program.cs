@@ -29,9 +29,9 @@ namespace Bugatti
         1X Kies zelf
 
     4) "hoofd" controller kan dit op properties:
-        "paging"
-        "sorting"
-        "search"
+        -DONE- "paging"
+        -DONE- "sorting"
+        -DONE- "search"
 
     5) 5 verschillende ingebouwde validaties op API
 

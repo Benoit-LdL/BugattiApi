@@ -17,64 +17,113 @@ namespace Bugatti
             //Create the DB if not yet exists
             context.Database.EnsureCreated();
 
+            #region ---COUNTRIES---
+            Country italy = null;
+            Country france = null;
+            Country germany = null;
+            if (!context.Countries.Any())
+            {
+
+                italy = new Country()
+                {
+                    //id
+                    Name = "Italy",
+                    //CreatorList = ,
+                    //CarList = ,
+                    InEU = true
+                };
+                france = new Country()
+                {
+                    //id
+                    Name = "France",
+                    //CreatorList = ,
+                    //CarList = ,
+                    InEU = true
+                };
+                germany = new Country()
+                {
+                    //id
+                    Name = "Germany",
+                    //CreatorList = ,
+                    //CarList = ,
+                    InEU = true
+                };
+                //add country to collection of countries
+                context.Countries.Add(italy);
+                context.Countries.Add(france);
+                context.Countries.Add(germany);
+                //save all the changes to the DB
+                context.SaveChanges();
+            }
+            #endregion
+
             #region ---CREATORS---
             //ALL PROPERTIES:
             // Id, FirstName, LastName, Cars, Birthday, BirthPlace, FirstNameDad, LastNameDad, FirstNameMom, LastNameMom    
 
-
+            Creator jean = null;
+            Creator ettore = null;
+            Creator jozef = null;
+            Creator achim = null;
+            Creator etienne = null;
             if (!context.Creators.Any())
             {
                 //create new Creators
-                var ettore = new Creator()
+                ettore = new Creator()
                 {
                     FirstName = "Ettore",
                     LastName = "Bugatti",
                     //cars =,
                     Birthday = new DateTime(1881, 9, 15),
+                    BirthPlace = italy,
                     FirstNameDad = "Carlo",
                     LastNameDad = "Bugatti",
                     FirstNameMom = "Teresa",
                     LastNameMom = "Lorioli"
                 };
-                var jean = new Creator()
+                jean = new Creator()
                 {
                     FirstName = "Jean",
                     LastName = "Bugatti",
                     //cars =,
                     Birthday = new DateTime(1909, 1, 15),
+                    BirthPlace = france,
                     FirstNameDad = "Ettore",
                     LastNameDad = "Bugatti",
                     FirstNameMom = "Barbara",
                     LastNameMom = "Mascherpa"
                 };
-                var jozef = new Creator()
+                jozef = new Creator()
                 {
                     FirstName = "Jozef",
                     LastName = "Kaban",
                     //cars =,
                     Birthday = new DateTime(1973, 1, 4),
+                    BirthPlace = germany,
                     FirstNameDad = "/",
                     LastNameDad = "/",
                     FirstNameMom = "/",
                     LastNameMom = "/"
                 };
-                var achim = new Creator()
+                achim = new Creator()
                 {
                     FirstName = "Achim",
                     LastName = "Anscheidt",
                     //cars =,
                     Birthday = new DateTime(1, 1, 1),
+                    BirthPlace = germany,
                     FirstNameDad = "/",
                     LastNameDad = "Anscheidt",
                     FirstNameMom = "/",
                     LastNameMom = "/"
                 };
-                var etienne = new Creator()
+                etienne = new Creator()
                 {
                     FirstName = "Étienne",
                     LastName = "Salomé",
                     //cars =,
                     Birthday = new DateTime(1980, 9, 20),
+                    BirthPlace = france,
                     FirstNameDad = "/",
                     LastNameDad = "Salomé",
                     FirstNameMom = "/",
@@ -92,16 +141,17 @@ namespace Bugatti
             #region ---CARS---
             //ALL PROPERTIES:
             //  Id, Name, Creator, StartBuildYear, StopBuildYear, Countries, AvrgPrice, Horsepower, MaxSpeed, Weight, Prototype, WorldRecords, TotalBuilt, TotalRaceVictories, SmallDescription
+            Car t35=null, t41=null, t57=null, aero=null, atl=null, veyr=null, chir=null, noire=null;
             if (!context.Cars.Any())
             {
-                var car1 = new Car()
+                t35 = new Car()
                 {
                     //id
                     Name = "Type 35",
-                    //Creator = ,
+                    Creator = ettore,
                     StartBuildYear = new DateTime(1924, 1, 1),
                     StopBuildYear = new DateTime(1931, 1, 1),
-                    //Countries = ,
+                    //Countries = List<Country>(france, italy);
                     AvrgPrice = 2500000,
                     Horsepower = 90,
                     MaxSpeed = 200,
@@ -112,11 +162,11 @@ namespace Bugatti
                     TotalRaceVictories = 2000,
                     SmallDescription = "..."
                 };
-                var car2 = new Car()
+                t41 = new Car()
                 {
                     //id
                     Name = "Type 41 Royale",
-                    //Creator = ettore,
+                    Creator = ettore,
                     StartBuildYear = new DateTime(1926, 1, 1),
                     StopBuildYear = new DateTime(1933, 1, 1),
                     //Countries = ,
@@ -130,11 +180,11 @@ namespace Bugatti
                     TotalRaceVictories = 0,
                     SmallDescription = "..."
                 };
-                var car3 = new Car()
+                t57 = new Car()
                 {
                     //id
                     Name = "Type 57 s/sc",
-                    //Creator = jean,
+                    Creator = jean,
                     StartBuildYear = new DateTime(1934, 1, 1),
                     StopBuildYear = new DateTime(1940, 1, 1),
                     //Countries = ,
@@ -148,11 +198,11 @@ namespace Bugatti
                     TotalRaceVictories = 0,
                     SmallDescription = "..."
                 };
-                var car4 = new Car()
+                aero = new Car()
                 {
                     //id
                     Name = "Type 57 Aérolithe",
-                    //Creator = jean,
+                    Creator = jean,
                     StartBuildYear = new DateTime(1935, 1, 1),
                     StopBuildYear = new DateTime(1935, 1, 1),
                     //Countries = ,
@@ -166,11 +216,11 @@ namespace Bugatti
                     TotalRaceVictories = 0,
                     SmallDescription = "..."
                 };
-                var car5 = new Car()
+                atl = new Car()
                 {
                     //id
                     Name = "Type 57 s(c) atlantic",
-                    //Creator = jean,
+                    Creator = jean,
                     StartBuildYear = new DateTime(1936, 1, 1),
                     StopBuildYear = new DateTime(1938, 1, 1),
                     //Countries = ,
@@ -184,11 +234,11 @@ namespace Bugatti
                     TotalRaceVictories = 0,
                     SmallDescription = "..."
                 };
-                var car6 = new Car()
+                veyr = new Car()
                 {
                     //id
                     Name = "veyron super sport",
-                    //Creator = jozef,
+                    Creator = jozef,
                     StartBuildYear = new DateTime(2005, 1, 1),
                     StopBuildYear = new DateTime(2015, 1, 1),
                     //Countries = ,
@@ -202,11 +252,11 @@ namespace Bugatti
                     TotalRaceVictories = 0,
                     SmallDescription = "..."
                 };
-                var car7 = new Car()
+                chir = new Car()
                 {
                     //id
                     Name = "chiron super sport",
-                    //Creator = achim,
+                    Creator = achim,
                     StartBuildYear = new DateTime(2019, 1, 1),
                     StopBuildYear = new DateTime(1, 1, 1),
                     //Countries = ,
@@ -220,11 +270,11 @@ namespace Bugatti
                     TotalRaceVictories = 0,
                     SmallDescription = "..."
                 };
-                var car8 = new Car()
+                noire = new Car()
                 {
                     //id
                     Name = "La voiture noir",
-                    //Creator = etienne,
+                    Creator = etienne,
                     StartBuildYear = new DateTime(2019, 1, 1),
                     StopBuildYear = new DateTime(1, 1, 1),
                     //Countries = ,
@@ -238,55 +288,20 @@ namespace Bugatti
                     TotalRaceVictories = 0,
                     SmallDescription = "..."
                 };
+                
                 //add car to collection of cars
-                context.Cars.Add(car1);
-                context.Cars.Add(car2);
-                context.Cars.Add(car3);
-                context.Cars.Add(car4);
-                context.Cars.Add(car5);
-                context.Cars.Add(car6);
-                context.Cars.Add(car7);
-                context.Cars.Add(car8);
+                context.Cars.Add(t35);
+                context.Cars.Add(t41);
+                context.Cars.Add(t57);
+                context.Cars.Add(aero);
+                context.Cars.Add(atl);
+                context.Cars.Add(veyr);
+                context.Cars.Add(chir);
+                context.Cars.Add(noire);
             }
             #endregion
 
-            #region ---COUNTRIES---
-            if (!context.Countries.Any())
-            {
-
-                var country1 = new Country()
-                {
-                    //id
-                    Name = "Italy",
-                    //CreatorList = ,
-                    //CarList = ,
-                    InEU = true
-                };
-                var country2 = new Country()
-                {
-                    //id
-                    Name = "France",
-                    //CreatorList = ,
-                    //CarList = ,
-                    InEU = true
-                };
-                var country3 = new Country()
-                {
-                    //id
-                    Name = "Germany",
-                    //CreatorList = ,
-                    //CarList = ,
-                    InEU = true
-                };
-                //add country to collection of countries
-                context.Countries.Add(country1);
-                context.Countries.Add(country2);
-                context.Countries.Add(country3);
-                //save all the changes to the DB
-                context.SaveChanges();
-            }
             
-            #endregion
         }
     }
 }

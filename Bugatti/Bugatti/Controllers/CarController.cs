@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bugatti.Controllers
 {
@@ -31,7 +32,7 @@ namespace Bugatti.Controllers
         [HttpGet]
         public List<Car> GetAllCars(string name, int? startBuildYear, int? page, string sortItem, int lenght = 2, string sortDir = "asc")
         {
-            IQueryable<Car> query = context.Cars;
+            IQueryable<Car> query = context.Cars.Include( c => c.Creator)
 
             #region SEARCHING
             if (!string.IsNullOrWhiteSpace(name))
@@ -41,14 +42,6 @@ namespace Bugatti.Controllers
                 DateTime tempDate = new DateTime((int)startBuildYear, 1, 1);
                 query = query.Where(d => d.StartBuildYear == tempDate);
             }
-            #endregion
-
-           #region PAGING
-                if (page.HasValue)
-                {
-                    query.Skip(page.Value);
-                }
-            query.Take(lenght);
             #endregion
 
             #region SORTING
@@ -76,6 +69,14 @@ namespace Bugatti.Controllers
                         break;
                 }
             }
+            #endregion
+
+            #region PAGING
+            if (page.HasValue)
+            {
+                query = query.Skip(page.Value);
+            }
+            query = query.Take(lenght);
             #endregion
 
 
