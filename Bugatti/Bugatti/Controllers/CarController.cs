@@ -29,15 +29,55 @@ namespace Bugatti.Controllers
 
         #region GET ALL CARS            [HTTPGET]       (/api/v1/cars)
         [HttpGet]
-        public List<Car> GetAllCars(int? page, int lenght = 2)
+        public List<Car> GetAllCars(string name, int? startBuildYear, int? page, string sortItem, int lenght = 2, string sortDir = "asc")
         {
             IQueryable<Car> query = context.Cars;
 
-            if (page.HasValue)
+            #region SEARCHING
+            if (!string.IsNullOrWhiteSpace(name))
+                query = query.Where(d => d.Name.Contains(name));
+            if (startBuildYear.HasValue)
             {
-                query.Skip(page.Value);
+                DateTime tempDate = new DateTime((int)startBuildYear, 1, 1);
+                query = query.Where(d => d.StartBuildYear == tempDate);
             }
+            #endregion
+
+           #region PAGING
+                if (page.HasValue)
+                {
+                    query.Skip(page.Value);
+                }
             query.Take(lenght);
+            #endregion
+
+            #region SORTING
+            if (!string.IsNullOrWhiteSpace(sortItem))
+            {
+                switch (sortItem)
+                {
+                    case "Id":
+                        if (sortDir == "asc")
+                            query = query.OrderBy(d => d.Id);
+                        else if (sortDir == "desc")
+                            query = query.OrderByDescending(d => d.Id);
+                        break;
+                    case "Name":
+                        if (sortDir == "asc")
+                            query = query.OrderBy(d => d.Name);
+                        else if (sortDir == "desc")
+                            query = query.OrderByDescending(d => d.Name);
+                        break;
+                    case "StartBuildYear":
+                        if (sortDir == "asc")
+                            query = query.OrderBy(d => d.StartBuildYear);
+                        else if (sortDir == "desc")
+                            query = query.OrderByDescending(d => d.StartBuildYear);
+                        break;
+                }
+            }
+            #endregion
+
 
             return query.ToList();
         }
