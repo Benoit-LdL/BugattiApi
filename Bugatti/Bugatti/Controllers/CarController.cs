@@ -29,9 +29,17 @@ namespace Bugatti.Controllers
 
         #region GET ALL CARS            [HTTPGET]       (/api/v1/cars)
         [HttpGet]
-        public List<Car> GetAllCars()
+        public List<Car> GetAllCars(int? page, int lenght = 2)
         {
-            return context.Cars.ToList();
+            IQueryable<Car> query = context.Cars;
+
+            if (page.HasValue)
+            {
+                query.Skip(page.Value);
+            }
+            query.Take(lenght);
+
+            return query.ToList();
         }
         #endregion
 
@@ -47,22 +55,6 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region DELETE SPECIFIC CAR     [HTTPDELETE]    (/api/v1/cars/delete/{id})
-        [Route("delete/{id}")]
-        [HttpDelete]
-        public IActionResult DeleteCar(int id)
-        {
-            var car = context.Cars.Find(id);
-            if (car == null)
-                return NotFound();
-            //delete car
-            context.Cars.Remove(car);
-            context.SaveChanges();
-            //default correct deletion response code 204
-            return NoContent();
-        }
-        #endregion
-
         #region CREATE NEW CAR          [HTTPPOST]      (/api/v1/cars)        
         [HttpPost]
         public IActionResult CreateCar([FromBody]Car newCar)
@@ -75,6 +67,22 @@ namespace Bugatti.Controllers
         }
         #endregion
 
+        #region DELETE SPECIFIC CAR     [HTTPDELETE]    (/api/v1/cars/{id})
+        [Route("{id}")]
+        [HttpDelete]
+        public IActionResult DeleteCar(int id)
+        {
+            var car = context.Cars.Find(id);
+            if (car == null)
+                return NotFound();
+            //delete car
+            context.Cars.Remove(car);
+            context.SaveChanges();
+            //default correct deletion response code 204
+            return NoContent();
+        }
+        #endregion      
+
         #region PATCH CAR               [HTTPPATCH]     (/api/v1/cars)
         [HttpPatch]
         public IActionResult PatchCar([FromBody] Car updateCar)
@@ -83,15 +91,14 @@ namespace Bugatti.Controllers
             if (orgCar == null)
                 return NotFound();
 
-            orgCar.Name = updateCar.Name;
-            //orgCar.Creator = updateCar.Creator;
+            // ADD IF STRUCTURE WITH ALL PROPERTIES
+            
 
             context.SaveChanges();
             return Ok(orgCar);
         }
         #endregion
-        
-        
+
         //Not Working -> can't give creator  
         #region UPDATE CAR               [HTTPPUT]       (/api/v1/cars)
         [HttpPut]

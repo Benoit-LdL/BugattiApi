@@ -18,7 +18,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region TEST [HTTPGET] (/api/v1/creators/test)
+        #region TEST                        [HTTPGET]       (/api/v1/creators/test)
         [Route("test")]
         [HttpGet]
         public string Test()
@@ -27,7 +27,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region GET ALL CREATORS [HTTPGET] (/api/v1/creators)
+        #region GET ALL CREATORS            [HTTPGET]       (/api/v1/creators)
         [HttpGet]
         public List<Creator> GetAllCreators()
         {
@@ -35,7 +35,7 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region GET SPECIFIC CREATOR [HTTPGET] (/api/v1/creators/{id})
+        #region GET SPECIFIC CREATOR        [HTTPGET]       (/api/v1/creators/{id})
         [Route("{id}")]
         [HttpGet]
         public IActionResult GetCreator(int id)
@@ -47,8 +47,20 @@ namespace Bugatti.Controllers
         }
         #endregion
 
-        #region DELETE SPECIFIC CREATOR [HTTPDELETE] (/api/v1/creators/delete/{id})
-        [Route("delete/{id}")]
+        #region CREATE NEW CREATOR          [HTTPPOST]      (/api/v1/creators)        
+        [HttpPost]
+        public IActionResult CreateCreator([FromBody]Creator newCreator)
+        {
+            //Car toevoegen in DB, Id wordt ook toegekend
+            context.Creators.Add(newCreator);
+            context.SaveChanges();
+            //stuur result 201 met car als content
+            return Created("", newCreator);
+        }
+        #endregion
+
+        #region DELETE SPECIFIC CREATOR     [HTTPDELETE]    (/api/v1/creators/{id})
+        [Route("{id}")]
         [HttpDelete]
         public IActionResult DeleteCreator(int id)
         {
@@ -63,5 +75,18 @@ namespace Bugatti.Controllers
         }
         #endregion
 
+        #region PATCH CREATOR                   [HTTPPATCH]     (/api/v1/creators)
+        [HttpPatch]
+        public IActionResult PatchCreator([FromBody] Creator updateCreator)
+        {
+            var orgCreator = context.Creators.Find(updateCreator.Id);
+            if (orgCreator == null)
+                return NotFound();
+
+           
+            context.SaveChanges();
+            return Ok(orgCreator);
+        }
+        #endregion
     }
 }
