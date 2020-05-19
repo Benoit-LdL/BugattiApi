@@ -30,7 +30,7 @@ namespace Bugatti.Controllers
 
         #region GET ALL CARS            [HTTPGET]       (/api/v1/cars)
         [HttpGet]
-        public List<Car> GetAllCars(string name, int? startBuildYear, int? page, string sortItem, int lenght = 10, string sortDir = "asc")
+        public List<Car> GetAllCars(string name, int? page, string sortItem, int? amount, string sortDir = "asc")
         {
             IQueryable<Car> query = context.Cars
                 .Include(coli => coli.CountryList)
@@ -40,11 +40,6 @@ namespace Bugatti.Controllers
             #region SEARCHING
             if (!string.IsNullOrWhiteSpace(name))
                 query = query.Where(d => d.Name.Contains(name));
-            if (startBuildYear.HasValue)
-            {
-                DateTime tempDate = new DateTime((int)startBuildYear, 1, 1);
-                query = query.Where(d => d.StartBuildYear == tempDate);
-            }
             #endregion
 
             #region SORTING
@@ -79,7 +74,14 @@ namespace Bugatti.Controllers
             {
                 query = query.Skip(page.Value);
             }
-            query = query.Take(lenght);
+            if (amount.HasValue)
+            {
+                query = query.Take(amount.Value);
+            }
+            else
+            {
+                query = query.Take(8);
+            }           
             #endregion
 
 

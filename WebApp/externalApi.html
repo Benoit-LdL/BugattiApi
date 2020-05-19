@@ -6,21 +6,39 @@
 
     <title>Bugatti Wiki</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/> 
-    <link href="style.css" rel="stylesheet" />
+    <link href="externalApi.css" rel="stylesheet" />
     <link rel="icon" href="favicon.png">
   </head>
 
   <body>
-    <img src="atlantic.jpg" alt="atlantic">
     <div class="navbar">
-      <a href="index.html"><i class="fa fa-fw fa-home"></i> Home</a>
+      <a href="index.html" ><i class="fa fa-fw fa-home"></i> Home</a>
       <a href="search.html"><i class="fa fa-fw fa-search"></i> Search</a>
       <a href="externalApi.html" class="active"><i class="fa fa-fw fa-cloud"></i> Api</a>
       <a href="login.html"><i class="fa fa-fw fa-user"></i> Login</a>
     </div>
-    <div id="root"></div>
-    <script src="external.js"></script>
+    <section class="top-banner">
+      <div class="container">
+        <h1 class="heading">Is it a good time to go on a roadtrip?</h1>
+        <form>
+          <input type="text" placeholder="Search for a city" autofocus>
+          <button type="submit">SUBMIT</button>
+          <span class="msg"></span>
+        </form>
+      </div>
+    </section>
+    <section class="ajax-section">
+      <div class="container">
+        <ul class="cities"></ul>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <div class="container">
+        <small><a style = "text-decoration:underline;" href="https://webdesign.tutsplus.com/tutorials/build-a-simple-weather-app-with-vanilla-javascript--cms-33893">Code</a> used from <a style = "text-decoration:underline;" href="http://georgemartsoukos.com/" target="_blank">George Martsoukos</a>
+        </small>
+      </div>
+    </footer>
+    <script type="text/javascript" src="externalApi.js"></script>
+
   </body>
 </html>

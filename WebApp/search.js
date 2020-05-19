@@ -1,32 +1,39 @@
 var carNameInput = '', sortInput = '', lenghtInput = 0, sortDir = "asc";
-var baseuUrl = 'https://localhost:44335/api/v1/cars?';
-var url
+var baseUrl = 'https://localhost:44335/api/v1/cars?';
+var url, urlAddon;
 
-function SetName() {
-    carNameInput = document.getElementById('nameInput').value;
-    url = baseuUrl + 'name=' + carNameInput;
-    Refresh();
-}
-function SetSort() {
-    if (document.getElementById('CheckOrder').checked ==true)
-    {
-        sortDir='desc';
+function EditUrl() {
+    urlAddon='';
+    if (document.getElementById('nameInput').value != '') {
+        carNameInput = document.getElementById('nameInput').value;
+        urlAddon += '&name=' + carNameInput;
     }
-    else
-    {
-        sortDir='asc';
+
+    if (document.getElementById('sortInput').value != ''){
+        sortInput = document.getElementById('sortInput').value;
+        urlAddon += '&sortItem=' + sortInput;
     }
-    sortInput = document.getElementById('sortInput').value;
-    url = baseuUrl + 'sortItem=' + sortInput + '&sortDir=' + sortDir;
+
+    if (document.getElementById('CheckOrder').checked == true) {
+        sortDir = 'desc';
+        urlAddon += '&sortDir=' + sortDir;
+    }
+    else {
+        sortDir = 'asc';
+        urlAddon += '&sortDir=' + sortDir;
+    }
+
+    if (document.getElementById('lengthInput').value != 0){
+        lenghtInput = document.getElementById('lengthInput').value;
+        urlAddon += '&amount=' + lenghtInput;
+    }
+    url = baseUrl +  urlAddon.slice(1);
     Refresh();
-}
-function SetLength() {
-    lenghtInput = document.getElementById('lengthInput').value;
-    url = baseuUrl + 'lenght=' + lenghtInput;
-    Refresh();
+
 }
 
 function Refresh() {
+    
     document.getElementById('root').innerHTML = "";
 
     const app = document.getElementById('root')
