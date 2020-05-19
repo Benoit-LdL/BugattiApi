@@ -124,5 +124,8 @@ D:\Programs\Google Drive\School\Artesis Plantijn\2019-2020\Cloud Api's\BugattiAp
 D:\Programs\Google Drive\School\Artesis Plantijn\2019-2020\Cloud Api's\BugattiApi\Bugatti\Bugatti\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\Programs\Google Drive\School\Artesis Plantijn\2019-2020\Cloud Api's\BugattiApi\Bugatti\Bugatti\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\Programs\Google Drive\School\Artesis Plantijn\2019-2020\Cloud Api's\BugattiApi\Bugatti\Bugatti\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programs\Google Drive\School\Artesis Plantijn\2019-2020\Cloud Api's\BugattiApi\Bugatti\Bugatti\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\Programs\Google Drive\School\Artesis Plantijn\2019-2020\Cloud Api's\BugattiApi\Bugatti\Bugatti\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Programs\Google Drive\School\Artesis Plantijn\2019-2020\Cloud Api's\BugattiApi\Bugatti\Bugatti\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 D:\Programs\Google Drive\School\Artesis Plantijn\2019-2020\Cloud Api's\BugattiApi\Bugatti\Bugatti\obj\Debug\netcoreapp3.1\Bugatti.csproj.CoreCompileInputs.cache
 D:\Programs\Google Drive\School\Artesis Plantijn\2019-2020\Cloud Api's\BugattiApi\Bugatti\Bugatti\obj\Debug\netcoreapp3.1\Bugatti.MvcApplicationPartsAssemblyInfo.cache

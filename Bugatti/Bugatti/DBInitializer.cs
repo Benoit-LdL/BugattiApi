@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bugatti.Controllers;
+using Microsoft.AspNetCore.Mvc;
 using Pomelo.EntityFrameworkCore.MySql;
 
 namespace Bugatti
@@ -17,55 +19,18 @@ namespace Bugatti
             //Create the DB if not yet exists
             context.Database.EnsureCreated();
 
-            #region ---COUNTRIES---
-            Country italy = null;
-            Country france = null;
-            Country germany = null;
-            if (!context.Countries.Any())
-            {
-
-                italy = new Country()
-                {
-                    //id
-                    Name = "Italy",
-                    //CreatorList = ,
-                    //CarList = ,
-                    InEU = true
-                };
-                france = new Country()
-                {
-                    //id
-                    Name = "France",
-                    //CreatorList = ,
-                    //CarList = ,
-                    InEU = true
-                };
-                germany = new Country()
-                {
-                    //id
-                    Name = "Germany",
-                    //CreatorList = ,
-                    //CarList = ,
-                    InEU = true
-                };
-                //add country to collection of countries
-                context.Countries.Add(italy);
-                context.Countries.Add(france);
-                context.Countries.Add(germany);
-                //save all the changes to the DB
-                context.SaveChanges();
-            }
-            #endregion
+            //Cars
+            Car t35 = null, t41 = null, t57 = null, aero = null, atl = null, veyr = null, chir = null, noire = null;
+            //Creators
+            Creator jean = null, ettore = null, jozef = null, achim = null, etienne = null;
+            //countries
+            Country italy = null, france = null, germany = null;
+            //car countries
+            Car_Country_JoinTable atl_FR = null, atl_DE = null;
 
             #region ---CREATORS---
             //ALL PROPERTIES:
             // Id, FirstName, LastName, Cars, Birthday, BirthPlace, FirstNameDad, LastNameDad, FirstNameMom, LastNameMom    
-
-            Creator jean = null;
-            Creator ettore = null;
-            Creator jozef = null;
-            Creator achim = null;
-            Creator etienne = null;
             if (!context.Creators.Any())
             {
                 //create new Creators
@@ -135,13 +100,15 @@ namespace Bugatti
                 context.Creators.Add(jozef);
                 context.Creators.Add(achim);
                 context.Creators.Add(etienne);
+                //save all the changes to the DB
+                context.SaveChanges();
             }
             #endregion
 
             #region ---CARS---
             //ALL PROPERTIES:
             //  Id, Name, Creator, StartBuildYear, StopBuildYear, Countries, AvrgPrice, Horsepower, MaxSpeed, Weight, Prototype, WorldRecords, TotalBuilt, TotalRaceVictories, SmallDescription
-            Car t35=null, t41=null, t57=null, aero=null, atl=null, veyr=null, chir=null, noire=null;
+
             if (!context.Cars.Any())
             {
                 t35 = new Car()
@@ -223,7 +190,7 @@ namespace Bugatti
                     Creator = jean,
                     StartBuildYear = new DateTime(1936, 1, 1),
                     StopBuildYear = new DateTime(1938, 1, 1),
-                    //Countries = ,
+                    //CountryList = tempList,
                     AvrgPrice = 40000000,
                     Horsepower = 200,
                     MaxSpeed = 200,
@@ -288,7 +255,7 @@ namespace Bugatti
                     TotalRaceVictories = 0,
                     SmallDescription = "..."
                 };
-                
+
                 //add car to collection of cars
                 context.Cars.Add(t35);
                 context.Cars.Add(t41);
@@ -298,9 +265,88 @@ namespace Bugatti
                 context.Cars.Add(veyr);
                 context.Cars.Add(chir);
                 context.Cars.Add(noire);
+                //save all the changes to the DB
+                context.SaveChanges();
             }
             #endregion
 
+            
+
+            #region ---COUNTRIES---
+
+            if (!context.Countries.Any())
+            {
+
+                italy = new Country()
+                {
+                    //id
+                    Name = "Italy",
+                    //CreatorList = ,
+                    //CarList = ,
+                    InEU = true
+                };
+                france = new Country()
+                {
+                    //id
+                    Name = "France",
+                    //CreatorList = ,
+                    //CarList = ,
+                    InEU = true
+                };
+                germany = new Country()
+                {
+                    //id
+                    Name = "Germany",
+                    //CreatorList = ,
+                    //CarList = ,
+                    InEU = true
+                };
+                //add country to collection of countries
+                context.Countries.Add(italy);
+                context.Countries.Add(france);
+                context.Countries.Add(germany);
+                //save all the changes to the DB
+                context.SaveChanges();
+            }
+            #endregion
+
+            #region ---CAR-COUNTRIES---
+
+            if (!context.CarCountries.Any())
+            {
+                atl_FR = new Car_Country_JoinTable()
+                {
+                    CarId = atl.Id,
+                    Car = atl,
+                    CountryId = france.Id,
+                    Country = france
+                    
+                };
+                atl_DE = new Car_Country_JoinTable()
+                {
+                    CarId = atl.Id,
+                    Car = atl,
+                    CountryId = germany.Id,
+                    Country = germany
+                };
+            }
+            context.CarCountries.Add(atl_FR);
+            context.CarCountries.Add(atl_DE);
+            //save all the changes to the DB
+            context.SaveChanges();
+            #endregion
+
+            
+            #region ADD COUNTRIES TO CARS
+            List<Car_Country_JoinTable> tempList = new List<Car_Country_JoinTable>();
+            tempList.Add(atl_FR);
+            tempList.Add(atl_DE);
+            atl.CountryList = tempList;
+
+            //context.Cars.Update(atl);
+            //save all the changes to the DB
+            context.SaveChanges();
+            #endregion
             
         }
     }

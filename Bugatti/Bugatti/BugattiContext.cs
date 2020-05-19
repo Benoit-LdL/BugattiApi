@@ -18,6 +18,8 @@ namespace Bugatti
 
         public DbSet<Country> Countries { get; set; }
 
+        public DbSet<Car_Country_JoinTable> CarCountries { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Car_Country_JoinTable>()

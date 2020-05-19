@@ -8,11 +8,10 @@ namespace Bugatti
     public class Car_Country_JoinTable
     {
         public int CarId { get; set; }
-        //public Car Car { get; set; }
+        public Car Car { get; set; }
 
         public int CountryId { get; set; }
-
-        //public Country Country { get; set; }
+        public Country Country { get; set; }
 
     }
 }
