@@ -30,9 +30,12 @@ namespace Bugatti.Controllers
 
         #region GET ALL CARS            [HTTPGET]       (/api/v1/cars)
         [HttpGet]
-        public List<Car> GetAllCars(string name, int? startBuildYear, int? page, string sortItem, int lenght = 2, string sortDir = "asc")
+        public List<Car> GetAllCars(string name, int? startBuildYear, int? page, string sortItem, int lenght = 10, string sortDir = "asc")
         {
-            IQueryable<Car> query = context.Cars.Include(coli => coli.CountryList).Include(cr => cr.Creator);
+            IQueryable<Car> query = context.Cars
+                .Include(coli => coli.CountryList)
+                .ThenInclude(co => co.Country)
+                .Include(cr => cr.Creator);
 
             #region SEARCHING
             if (!string.IsNullOrWhiteSpace(name))

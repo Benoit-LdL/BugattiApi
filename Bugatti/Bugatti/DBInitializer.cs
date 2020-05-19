@@ -26,7 +26,46 @@ namespace Bugatti
             //countries
             Country italy = null, france = null, germany = null;
             //car countries
-            Car_Country_JoinTable atl_FR = null, atl_DE = null;
+            Car_Country_JoinTable t35_IT = null, t41_FR = null, t57_FR = null, aero_DE = null, atl_FR = null, atl_DE = null, veyr_FR = null, chir_FR = null, chir_IT = null, noire_FR = null;
+
+
+            #region ---COUNTRIES---
+
+            if (!context.Countries.Any())
+            {
+
+                italy = new Country()
+                {
+                    //id
+                    Name = "Italy",
+                    //CreatorList = ,
+                    //CarList = ,
+                    InEU = true
+                };
+                france = new Country()
+                {
+                    //id
+                    Name = "France",
+                    //CreatorList = ,
+                    //CarList = ,
+                    InEU = true
+                };
+                germany = new Country()
+                {
+                    //id
+                    Name = "Germany",
+                    //CreatorList = ,
+                    //CarList = ,
+                    InEU = true
+                };
+                //add country to collection of countries
+                context.Countries.Add(italy);
+                context.Countries.Add(france);
+                context.Countries.Add(germany);
+                //save all the changes to the DB
+                context.SaveChanges();
+            }
+            #endregion
 
             #region ---CREATORS---
             //ALL PROPERTIES:
@@ -38,7 +77,6 @@ namespace Bugatti
                 {
                     FirstName = "Ettore",
                     LastName = "Bugatti",
-                    //cars =,
                     Birthday = new DateTime(1881, 9, 15),
                     BirthPlace = italy,
                     FirstNameDad = "Carlo",
@@ -50,7 +88,6 @@ namespace Bugatti
                 {
                     FirstName = "Jean",
                     LastName = "Bugatti",
-                    //cars =,
                     Birthday = new DateTime(1909, 1, 15),
                     BirthPlace = france,
                     FirstNameDad = "Ettore",
@@ -62,7 +99,6 @@ namespace Bugatti
                 {
                     FirstName = "Jozef",
                     LastName = "Kaban",
-                    //cars =,
                     Birthday = new DateTime(1973, 1, 4),
                     BirthPlace = germany,
                     FirstNameDad = "/",
@@ -74,7 +110,6 @@ namespace Bugatti
                 {
                     FirstName = "Achim",
                     LastName = "Anscheidt",
-                    //cars =,
                     Birthday = new DateTime(1, 1, 1),
                     BirthPlace = germany,
                     FirstNameDad = "/",
@@ -86,7 +121,6 @@ namespace Bugatti
                 {
                     FirstName = "Étienne",
                     LastName = "Salomé",
-                    //cars =,
                     Birthday = new DateTime(1980, 9, 20),
                     BirthPlace = france,
                     FirstNameDad = "/",
@@ -270,46 +304,6 @@ namespace Bugatti
             }
             #endregion
 
-            
-
-            #region ---COUNTRIES---
-
-            if (!context.Countries.Any())
-            {
-
-                italy = new Country()
-                {
-                    //id
-                    Name = "Italy",
-                    //CreatorList = ,
-                    //CarList = ,
-                    InEU = true
-                };
-                france = new Country()
-                {
-                    //id
-                    Name = "France",
-                    //CreatorList = ,
-                    //CarList = ,
-                    InEU = true
-                };
-                germany = new Country()
-                {
-                    //id
-                    Name = "Germany",
-                    //CreatorList = ,
-                    //CarList = ,
-                    InEU = true
-                };
-                //add country to collection of countries
-                context.Countries.Add(italy);
-                context.Countries.Add(france);
-                context.Countries.Add(germany);
-                //save all the changes to the DB
-                context.SaveChanges();
-            }
-            #endregion
-
             #region ---CAR-COUNTRIES---
 
             if (!context.CarCountries.Any())
@@ -329,24 +323,79 @@ namespace Bugatti
                     CountryId = germany.Id,
                     Country = germany
                 };
+                t35_IT = new Car_Country_JoinTable()
+                {
+                    CarId = t35.Id,
+                    Car = t35,
+                    CountryId = italy.Id,
+                    Country = italy
+                };
+                t41_FR = new Car_Country_JoinTable()
+                {
+                    CarId = t41.Id,
+                    Car = t41,
+                    CountryId = france.Id,
+                    Country = france
+                };
+                t57_FR = new Car_Country_JoinTable()
+                {
+                    CarId = t57.Id,
+                    Car = t57,
+                    CountryId = france.Id,
+                    Country = france
+                };
+                aero_DE = new Car_Country_JoinTable()
+                {
+                    CarId = aero.Id,
+                    Car = aero,
+                    CountryId = germany.Id,
+                    Country = germany
+                };
+                veyr_FR = new Car_Country_JoinTable()
+                {
+                    CarId = veyr.Id,
+                    Car = veyr,
+                    CountryId = france.Id,
+                    Country = france
+                };
+                chir_IT = new Car_Country_JoinTable()
+                {
+                    CarId = chir.Id,
+                    Car = chir,
+                    CountryId = italy.Id,
+                    Country = italy
+                };
+                chir_FR = new Car_Country_JoinTable()
+                {
+                    CarId = chir.Id,
+                    Car = chir,
+                    CountryId = france.Id,
+                    Country = france
+                };
+                noire_FR = new Car_Country_JoinTable()
+                {
+                    CarId = noire.Id,
+                    Car = noire,
+                    CountryId = france.Id,
+                    Country = france
+                };
             }
             context.CarCountries.Add(atl_FR);
             context.CarCountries.Add(atl_DE);
+            context.CarCountries.Add(t35_IT);
+            context.CarCountries.Add(t41_FR);
+            context.CarCountries.Add(t57_FR);
+            context.CarCountries.Add(aero_DE);
+            context.CarCountries.Add(veyr_FR);
+            context.CarCountries.Add(chir_FR);
+            context.CarCountries.Add(chir_IT);
+            context.CarCountries.Add(noire_FR);
             //save all the changes to the DB
             context.SaveChanges();
             #endregion
 
-            
-            #region ADD COUNTRIES TO CARS
-            List<Car_Country_JoinTable> tempList = new List<Car_Country_JoinTable>();
-            tempList.Add(atl_FR);
-            tempList.Add(atl_DE);
-            atl.CountryList = tempList;
-
-            //context.Cars.Update(atl);
             //save all the changes to the DB
             context.SaveChanges();
-            #endregion
             
         }
     }

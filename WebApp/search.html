@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Bugatti Wiki</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="style.css" rel="stylesheet" />
+    <link rel="icon" href="favicon.png">
+</head>
+
+<body>
+    <img src="atlantic.jpg" alt="atlantic">
+    <div class="navbar">
+        <a href="index.html"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a href="search.html" class="active"><i class="fa fa-fw fa-search"></i> Search</a>
+        <a href="externalApi.html"><i class="fa fa-fw fa-cloud"></i> Api</a>
+        <a href="login.html"><i class="fa fa-fw fa-user"></i> Login</a>
+    </div>
+
+<div class="search">
+    Car name:
+    <input type="text" id = "nameInput" name=nameInput>
+    <button onclick="SetName()">show results</button>
+    <br>
+    Sort by:
+    <select id="sortInput" name="sortInput">
+        <option value="Id">Id</option>
+        <option value="Name">Name</option>
+        <option value="StartBuildYear">Start Build Year</option>
+    </select>
+    Descending order:
+    <input type="checkbox" id="CheckOrder" name="CheckOrder" value="desc">
+    <button onclick="SetSort()">show results</button>
+    <br>
+    Cars per page:
+    <select id="lengthInput" name="lengthInput" class="form-control">
+        <option value="1">1 car</option>
+        <option value="2">2 cars</option>
+        <option value="3">3 cars</option>
+        <option value="4">4 cars</option>
+    </select>
+    <button onclick="SetLength()">show results</button>
+</div>
+    
+
+
+    <!-------------------------------------------------->
+    <div id="root"></div>
+    <script src="search.js"></script>
+</body>
+
+</html>

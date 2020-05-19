@@ -19,11 +19,8 @@ namespace Bugatti
 
         2)  -DONE-2 controllers
             met CRUD: Create, Read, Update, Delete => SQL = Insert, Select, Update, Delete
-     */
-    #endregion
-    /*
-    
-    3) datamodel met 3 klassen: 
+
+        3) datamodel met 3 klassen: 
         1X "1 op veel" relatie
         1X "veel op veel" relatie
         1X Kies zelf
@@ -34,6 +31,9 @@ namespace Bugatti
         -DONE- "search"
 
     5) 5 verschillende ingebouwde validaties op API
+     */
+    #endregion
+    /*
 
     6) basis client applicatie vanwaaruit je je API aanspreekt (Angular, Ionic, gewoon HTML/Javascript,..)
 

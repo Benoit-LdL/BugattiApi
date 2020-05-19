@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,7 +13,9 @@ namespace Bugatti
         //  Id, Name, Creator, StartBuildYear, StopBuildYear, Countries, AvrgPrice, Horsepower, MaxSpeed, Torque, Weight, Prototype, WorldRecords, TotalBuilt, TotalRaceVictories, SmallDescription
 
         public int Id { get; set; }
-
+        
+        [Required]
+        [StringLength(25)]
         public string Name { get; set; }
 
         public Creator Creator { get; set; }

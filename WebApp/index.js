@@ -35,18 +35,25 @@ request.onload = function() {
       listItem1 = document.createElement('li');
       listItem1.innerHTML = "price: " + car.avrgPrice + " euro";
 
-      //listItem2 = document.createElement('li');
-      //listItem2.innerHTML = "Creator: " + car.creator;
+      listItem2 = document.createElement('li');
+      listItem2.innerHTML = "Creator: " + car.creator.firstName + " " + car.creator.lastName;
 
-      //listItem3 = document.createElement('li');
-      //listItem3.innerHTML = "Build from " + car.startBuildYear + " until " + car.StopBuildYear.getFullYear();
+      listItem3 = document.createElement('li');
+      var startYear = car.startBuildYear.toString().substring(0,4);
+      var stopYear = car.stopBuildYear.toString().substring(0,4);
+      if (stopYear == 0001)
+        stopYear = "/";
+      listItem3.innerHTML = "Build from " + startYear + " until " + stopYear;
 
-      //listItem4 = document.createElement('li');
-      //listItem4.innerHTML = "Countries: " + car.countries;
-
-      listItem5 = document.createElement('li');
-      listItem5.innerHTML = "price: " + car.avrgprice + " euro";
-
+      listItem4 = document.createElement('li');
+      var countries = "";
+      for (i=0;i<car.countryList.length;i++)
+      {
+        countries += car.countryList[i].country.name + ", ";
+      }
+      countries = countries.substring(0,(countries.length-2));
+      listItem4.innerHTML = "Countries: " + countries; 
+        
       listItem6 = document.createElement('li');
       listItem6.innerHTML = "Engine horsepower: " + car.horsepower + " PK";
 
@@ -60,16 +67,16 @@ request.onload = function() {
       listItem9.innerHTML = "Prototype: " + car.prototype;
 
       listItem10 = document.createElement('li');
-      listItem10.innerHTML = "Worldrecords: " + car.worldrecords;
+      listItem10.innerHTML = "Worldrecords: " + car.worldRecords;
 
       listItem11 = document.createElement('li');
       listItem11.innerHTML = "Total built: " + car.totalBuilt;
 
       listItem12 = document.createElement('li');
-      listItem12.innerHTML = "Total race victories: " + car.totalRaceVictories + "victories";
+      listItem12.innerHTML = "Total race victories: " + car.totalRaceVictories + " victories";
 
       listItem13 = document.createElement('li');
-      listItem13.innerHTML = "Extra description:" + car.description;
+      listItem13.innerHTML = "Extra description: " + car.smallDescription;
       //---------------------------------------------------------------
 
       
@@ -85,10 +92,9 @@ request.onload = function() {
       card.appendChild(listElement)
       // Add listItem to the listElement
       listElement.appendChild(listItem1);
-      //listElement.appendChild(listItem2);
-      //listElement.appendChild(listItem3);
-      //listElement.appendChild(listItem4);
-      listElement.appendChild(listItem5);
+      listElement.appendChild(listItem2);
+      listElement.appendChild(listItem3);
+      listElement.appendChild(listItem4);
       listElement.appendChild(listItem6);
       listElement.appendChild(listItem7);
       listElement.appendChild(listItem8);

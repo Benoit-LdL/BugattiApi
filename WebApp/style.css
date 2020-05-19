@@ -85,7 +85,10 @@ img {
   }
    
 
-
+  .search {
+    border: #1B294B;
+    border-radius: 2px;
+  }
 
   @media screen and (min-width: 600px) {
     .card {
