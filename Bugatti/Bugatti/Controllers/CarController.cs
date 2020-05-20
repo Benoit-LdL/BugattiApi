@@ -146,8 +146,42 @@ namespace Bugatti.Controllers
             {
                 orgCar.Name = updateCar.Name;
             }
-            
-
+            if (updateCar.AvrgPrice != orgCar.AvrgPrice)
+            {
+                orgCar.AvrgPrice = updateCar.AvrgPrice;
+            }
+            if (updateCar.Horsepower != orgCar.Horsepower)
+            {
+                orgCar.Horsepower = updateCar.Horsepower;
+            }
+            if (updateCar.MaxSpeed != orgCar.MaxSpeed)
+            {
+                orgCar.MaxSpeed = updateCar.MaxSpeed;
+            }
+            if (updateCar.Weight != orgCar.Weight)
+            {
+                orgCar.Weight = updateCar.Weight;
+            }
+            if (updateCar.Prototype != orgCar.Prototype)
+            {
+                orgCar.Prototype = updateCar.Prototype;
+            }
+            if (updateCar.WorldRecords != orgCar.WorldRecords)
+            {
+                orgCar.WorldRecords = updateCar.WorldRecords;
+            }
+            if (updateCar.TotalBuilt != orgCar.TotalBuilt)
+            {
+                orgCar.TotalBuilt = updateCar.TotalBuilt;
+            }
+            if (updateCar.TotalRaceVictories != orgCar.TotalRaceVictories)
+            {
+                orgCar.TotalRaceVictories = updateCar.TotalRaceVictories;
+            }
+            if (updateCar.SmallDescription != orgCar.SmallDescription)
+            {
+                orgCar.SmallDescription = updateCar.SmallDescription;
+            }
             context.SaveChanges();
             return Ok(orgCar);
         }
