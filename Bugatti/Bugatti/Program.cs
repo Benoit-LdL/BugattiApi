@@ -18,6 +18,8 @@ namespace Bugatti
             -DONE-   en SQL databank
     2)  -DONE-2 controllers
             met CRUD: Create, Read, Update, Delete => SQL = Insert, Select, Update, Delete
+            Geef de juiste status code terug (bv. als een ID niet gevonden wordt moet er een status 404 ("NOT found") worden teruggestuurd en bv.
+            geen 500 ("internal server error") (door bv. een exceptie van EF op de server omdat dat deze het object niet vind in de db)
     3) datamodel met 3 klassen: 
         1X "1 op veel" relatie
         1X "veel op veel" relatie
@@ -31,28 +33,26 @@ namespace Bugatti
      11) Betrek 3rd party API via client of server.
      */
     #endregion
-    
-        
-        
-        /*
-    XXX
-    7) gebruikt van hypermedia lever meer punten. --ZIE REST.PDF
-    XXX
 
-    8) login via client met OAuth/Open ID 
 
-    9) Beveilig API deels met een JWT Token (bepaal zelf welk deel)
 
-   10) Geef het JWT token vanuit je client (nadat de gebruiker is aangemeld) voor toegang beveiligde deel.
-   
-   12) Deployment naar google cloud.
+    /*
+XXX
+7) gebruikt van hypermedia lever meer punten. --ZIE REST.PDF
+XXX
 
-     Geef de juiste status code terug (bv. als een ID niet gevonden wordt moet er een status 404 ("NOT found") worden teruggestuurd en bv.
-     geen 500 ("internal server error") (door bv. een exceptie van EF op de server omdat dat deze het object niet vind in de db)
+8) login via client met OAuth/Open ID 
 
-     * client app: 
-     Gebruik ook de validatie JSON data om in je client aan de gebruiker de foutmeldingen weer te geven bij een POST/PUT. Als je dat alles doet voor 1 controller is dat voldoende, moet dus niet persé voor alle controllers voorzien worden.
-     */
+9) Beveilig API deels met een JWT Token (bepaal zelf welk deel)
+
+10) Geef het JWT token vanuit je client (nadat de gebruiker is aangemeld) voor toegang beveiligde deel.
+
+12) Deployment naar google cloud.
+
+
+ * client app: 
+ Gebruik ook de validatie JSON data om in je client aan de gebruiker de foutmeldingen weer te geven bij een POST/PUT. Als je dat alles doet voor 1 controller is dat voldoende, moet dus niet persé voor alle controllers voorzien worden.
+ */
 
 
 

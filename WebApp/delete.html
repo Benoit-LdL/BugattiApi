@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Bugatti Wiki</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="Css/delete.css" media="all">
+    <script type="text/javascript" src="javascript/delete.js"></script>
+    <script type="text/javascript" src="javascript/calendar.js"></script>
+    <link rel="icon" href="Media/favicon.png">
+</head>
+
+<body>
+    <img class="bugatti" src="Media/atlantic.jpg" alt="atlantic">
+    <div class="navbar">
+        <a href="index.html"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a href="search.html"><i class="fa fa-fw fa-search"></i> Search</a>
+        <a href="add.html" ><i class=""></i> Add</a>
+        <a href="patch.html"><i class=""></i> Patch</a>
+        <a href="delete.html" class="active"><i class=""></i> Delete</a>
+        <a href="externalApi.html"><i class="fa fa-fw fa-cloud"></i> Api</a>
+        <a href="login.html"><i class="fa fa-fw fa-user"></i> Login</a>
+    </div>
+
+
+    <p>Choose a car to delete:</p>
+
+    <form>
+        <select id="cars" name="cars">
+        </select>
+    </form>
+    <button onclick="DeleteRequest()">Delete</button>
+</body>
+
+</html>

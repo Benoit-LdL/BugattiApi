@@ -65,6 +65,12 @@ namespace Bugatti.Controllers
                         else if (sortDir == "desc")
                             query = query.OrderByDescending(d => d.StartBuildYear);
                         break;
+                    default:
+                        if (sortDir == "asc")
+                            query = query.OrderBy(d => d.Id);
+                        else if (sortDir == "desc")
+                            query = query.OrderByDescending(d => d.Id);
+                        break;
                 }
             }
             #endregion
@@ -80,7 +86,7 @@ namespace Bugatti.Controllers
             }
             else
             {
-                query = query.Take(8);
+                query = query.Take(20);
             }           
             #endregion
 
@@ -136,8 +142,10 @@ namespace Bugatti.Controllers
             var orgCar = context.Cars.Find(updateCar.Id);
             if (orgCar == null)
                 return NotFound();
-
-            // ADD IF STRUCTURE WITH ALL PROPERTIES
+            if (updateCar.Name != orgCar.Name)
+            {
+                orgCar.Name = updateCar.Name;
+            }
             
 
             context.SaveChanges();

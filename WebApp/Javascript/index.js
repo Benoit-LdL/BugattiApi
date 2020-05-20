@@ -36,7 +36,11 @@ request.onload = function() {
       listItem1.innerHTML = "price: " + car.avrgPrice + " euro";
 
       listItem2 = document.createElement('li');
-      listItem2.innerHTML = "Creator: " + car.creator.firstName + " " + car.creator.lastName;
+      if (car.creator != null)
+        listItem2.innerHTML = "Creator: " + car.creator.firstName + " " + car.creator.lastName;
+      else
+        listItem2.innerHTML = "Creator: unknown";
+
 
       listItem3 = document.createElement('li');
       var startYear = car.startBuildYear.toString().substring(0,4);
