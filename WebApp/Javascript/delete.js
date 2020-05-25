@@ -1,4 +1,18 @@
 
+//authentication
+function getAccessToken() {
+    alert('test');
+    var url = window.location;
+    var access_token = new URLSearchParams(url.search).get('access_token');
+    alert(access_token);
+}
+
+function test()
+{
+    alert('test');
+}
+//-------------------------------------------------
+
 var data 
 var carNames = []
 //http GET request
@@ -34,3 +48,4 @@ function DeleteRequest()
     })
     alert('car deleted')
 }
+

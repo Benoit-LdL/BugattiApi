@@ -1,3 +1,4 @@
+
 // access root from html file
 const app = document.getElementById('root')
 
@@ -113,3 +114,10 @@ request.onload = function() {
   }
 }
 request.send()
+
+
+
+function GetAccessToken() {
+  alert("test");
+  alert(getParameterByName('access_token'));
+}

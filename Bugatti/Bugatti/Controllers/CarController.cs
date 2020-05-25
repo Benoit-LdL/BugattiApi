@@ -124,14 +124,14 @@ namespace Bugatti.Controllers
         [HttpDelete]
         public IActionResult DeleteCar(int id)
         {
-            var car = context.Cars.Find(id);
-            if (car == null)
-                return NotFound();
-            //delete car
-            context.Cars.Remove(car);
-            context.SaveChanges();
-            //default correct deletion response code 204
-            return NoContent();
+                var car = context.Cars.Find(id);
+                if (car == null)
+                    return NotFound();
+                //delete car
+                context.Cars.Remove(car);
+                context.SaveChanges();
+                //default correct deletion response code 204
+                return NoContent();
         }
         #endregion      
 
