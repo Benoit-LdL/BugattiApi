@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -121,6 +122,7 @@ namespace Bugatti.Controllers
 
         #region DELETE SPECIFIC CAR     [HTTPDELETE]    (/api/v1/cars/{id})
         [Route("{id}")]
+        //[Authorize]
         [HttpDelete]
         public IActionResult DeleteCar(int id)
         {

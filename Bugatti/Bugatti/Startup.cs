@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,16 @@ namespace Bugatti
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Authentication code
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.Authority = "https://accounts.google.com";
+                options.Audience = "609373984330-onab060bp61jj60piq66h7sg1icicf4t.apps.googleusercontent.com";//client ID
+
+            });
+            //-------------
+
             services.AddDbContext<BugattiContext>(
                 options => options.UseSqlServer(
                         Configuration.GetConnectionString("DefaultConnection")
@@ -37,7 +48,9 @@ namespace Bugatti
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //Authentication code
+            app.UseAuthentication();
+            //-------------
             app.UseHttpsRedirection();
             app.UseRouting();
 

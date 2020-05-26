@@ -63,32 +63,34 @@ form.addEventListener("submit", e => {
       switch (weather[0]["description"])
       {
         case "clear sky":
-            message = "perfect to go driving";
+            message = "Sunscreen will be needed on this roadtrip";
             break;
         case "few clouds":
-            message = "Sunscreen won't be needed on this roadtrip";
+            message = "Perfect weather to take out your beauty for a drive";
             break;
         case "scattered clouds":
             message = "Taking a jacket should be enough on this roadtrip";
-            break
+            break;
         case "broken clouds":
             message = "Having a cabriolet or spyder might be risky...";
-            break
+            break;
         case "shower rain":
             message = "If you need a carwash, go ahaid";
             break;
         case "rain":
             message = "I hope you have working car wipers";
-            break
+            break;
         case "thunderstorm":
             message = "I don't see why you would take your car for a ride now...";
-            break
+            break;
         case "snow":
             message = "Drifting with a Bugatti sounds fun";
-            break
+            break;
         case "mist":
             message = "Nobody will see your beautiful masterpiece, so just stay home and drink a hot coco instead";
-            break
+            break;
+        default:
+            message = weather[0]["description"];
       }
       
       

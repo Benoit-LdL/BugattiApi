@@ -1,15 +1,20 @@
+var access_token;
 
 //authentication
-function getAccessToken() {
-    alert('test');
-    var url = window.location;
-    var access_token = new URLSearchParams(url.search).get('access_token');
-    alert(access_token);
-}
-
-function test()
+function CheckToken()
 {
-    alert('test');
+    access_token = new URLSearchParams(window.location).get('code');
+    //alert(access_token);
+    if (access_token == null)
+    {
+    //document.getElementById("btnDelete").disabled = true;
+    //document.getElementById("loggedIn").innerText ="Not logged in";
+    }
+    else
+    {
+    //document.getElementById("btnDelete").disabled = false;
+    //document.getElementById("loggedIn").innerText="Succesfully logged in";
+    }
 }
 //-------------------------------------------------
 
@@ -17,8 +22,8 @@ var data
 var carNames = []
 //http GET request
 var request = new XMLHttpRequest()
-request.open('GET', 'https://localhost:44335/api/v1/cars')
-;
+request.open('GET', 'https://localhost:44335/api/v1/cars');
+request.setRequestHeader("Bearer",access_token);
 request.onload = function () {
     data = JSON.parse(this.response)
     if (request.status >= 200 && request.status < 400) {
@@ -43,9 +48,10 @@ function DeleteRequest()
             {
                 method: 'delete'
             })
-            .then(response => response.json());
+            .then(res => res.text()) // or res.json()
+            .then(res => console.log(res.status))
         }
     })
-    alert('car deleted')
+    
 }
 

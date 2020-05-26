@@ -15,33 +15,35 @@
     <link rel="icon" href="Media/favicon.png">
 </head>
 
-<body>
+<body onload="CheckToken()">
     <img class="bugatti" src="Media/atlantic.jpg" alt="atlantic">
     <div class="navbar">
         <a href="index.html"><i class="fa fa-fw fa-home"></i> Home</a>
         <a href="search.html"><i class="fa fa-fw fa-search"></i> Search</a>
-        <a href="add.html" ><i class=""></i> Add</a>
-        <a href="patch.html"><i class=""></i> Patch</a>
-        <a href="delete.html" class="active"><i class=""></i> Delete</a>
+        <a href="add.html" ><i class="fa fa-fw fa-plus-circle"></i> Add</a>
+        <a href="patch.html"><i class="fa fa-fw fa-edit"></i> Patch</a>
+        <a href="delete.html" class="active"><i class="fa fa-fw fa-trash"></i> Delete</a>
         <a href="externalApi.html"><i class="fa fa-fw fa-cloud"></i> Api</a>
-        <a href="login.html"><i class="fa fa-fw fa-user"></i> Login</a>
     </div>
-
-    <a href="
-  https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=http%3A//localhost%3A8081/delete.html&client_id=609373984330-onab060bp61jj60piq66h7sg1icicf4t.apps.googleusercontent.com
-  ">login</a>
-  
-  <button onclick="getAccessToken()">token</button>
-  <p id="accessToken"></p>
-
-
-    <p>Choose a car to delete:</p>
+    <br>
+   <!--https://accounts.google.com/o/oauth2/v2/auth?
+    scope=https%3A//www.googleapis.com/auth/userinfo.profile
+    &include_granted_scopes=true
+    &response_type=toke
+    n&state=state_parameter_passthrough_value
+    &redirect_uri=http%3A//localhost/CloudAPI/delete.html
+    &client_id=609373984330-onab060bp61jj60piq66h7sg1icicf4t.apps.googleusercontent.com">
+   
+    -->
+    <a href="https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=609373984330-onab060bp61jj60piq66h7sg1icicf4t.apps.googleusercontent.com&scope=openid%20email&redirect_uri=http%3A//localhost/CloudAPI/delete.html&login_hint=jsmith@example.com&nonce=0394852-3190485-2490358&">Log into google</a>
+    <br>    
+        <p>Choose a car to delete:</p>
 
     <form>
         <select id="cars" name="cars">
         </select>
     </form>
-    <button onclick="DeleteRequest()">Delete</button>
+    <button id="btnDelete" onclick="DeleteRequest()">Delete</button>
 </body>
 
 </html>
